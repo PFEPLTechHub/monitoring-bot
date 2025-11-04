@@ -1,0 +1,21 @@
+[Unit]
+Description=Monitoring Report Bot
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/monitoring-report-bot
+Environment=PATH=/var/www/monitoring-report-bot/venv/bin
+ExecStart=/var/www/monitoring-report-bot/venv/bin/python /var/www/monitoring-report-bot/start_bot.py
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=monitoring-report-bot
+
+[Install]
+WantedBy=multi-user.target
